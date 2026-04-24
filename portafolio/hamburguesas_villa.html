@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburguesas Villa | El Sabor de Zihuatanejo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-yellow: #f1c40f;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --text-light: #ffffff;
+            --text-muted: #b3b3b3;
+            --accent-gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 5px solid var(--primary-yellow);
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--primary-yellow);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .history-section {
+            background-color: #f3e5ab;
+            color: #333;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            position: relative;
+            box-shadow: 10px 10px 0px var(--primary-yellow);
+        }
+
+        .history-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            margin-bottom: 15px;
+            color: #8b4513;
+        }
+
+        .grid-menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-category {
+            margin-bottom: 40px;
+        }
+
+        .menu-category h2 {
+            border-left: 5px solid var(--primary-yellow);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .menu-item {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.02);
+            border: 1px solid var(--primary-yellow);
+        }
+
+        .item-info {
+            flex-grow: 1;
+            padding-right: 20px;
+        }
+
+        .item-name {
+            font-weight: bold;
+            color: var(--primary-yellow);
+            display: block;
+            font-size: 1.1rem;
+        }
+
+        .item-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .item-price {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #fff;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .packages {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .package-card {
+            flex: 1;
+            min-width: 280px;
+            border: 2px dashed var(--primary-yellow);
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        .package-card h3 {
+            color: var(--primary-yellow);
+            margin-bottom: 10px;
+        }
+
+        footer {
+            background-color: #000;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        .social-links {
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--primary-yellow);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .history-section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Hamburguesas Villa</h1>
+        <p>Las hamburguesas de carrito MÁS FAMOSAS de Zihuatanejo.</p>
+    </header>
+
+    <div class="container">
+        
+        <section class="history-section">
+            <h2>Nuestra Historia</h2>
+            <p>Tras 8 años de ofrecer nuestro servicio en el icónico carrito de la esquina de La Nissan, evolucionamos para ofrecerte la misma esencia en un espacio más cómodo. Conservamos el sabor y el estilo que nos dio identidad desde el primer día.</p>
+        </section>
+
+        <div class="grid-menu">
+            <section class="menu-category">
+                <h2>🍔 Hamburguesas</h2>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <span class="item-name">Hamburguesa Villa</span>
+                        <p class="item-desc">Jamón, queso amarillo y oaxaca, cebolla caramelizada, verduras y chiles.</p>
+                    </div>
+                    <span class="item-price">$105</span>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <span class="item-name">Hamburguesa BBQ</span>
+                        <p class="item-desc">BBQ, aros de cebolla, tocino, queso amarillo y oaxaca, cebolla caramelizada.</p>
+                    </div>
+                    <span class="item-price">$155</span>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <span class="item-name">Hamburguesa Mexicana</span>
+                        <p class="item-desc">Con verduras, cama de guacamole, chorizo y queso oaxaca.</p>
+                    </div>
+                    <span class="item-price">$130</span>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <span class="item-name">La Mc Donald</span>
+                        <p class="item-desc">Jamón, queso amarillo, lechuga y papas fritas.</p>
+                    </div>
+                    <span class="item-price">$95</span>
+                </div>
+            </section>
+
+            <section class="menu-category">
+                <h2>🌭 Hot Dogs</h2>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <span class="item-name">Hot Dog Villa</span>
+                        <p class="item-desc">Salchicha, tocino, verduras y chiles en vinagre.</p>
+                    </div>
+                    <span class="item-price">$55</span>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <span class="item-name">Hot Dog Mexicano</span>
+                        <p class="item-desc">Guacamole, chorizo, queso oaxaca y chile toreado.</p>
+                    </div>
+                    <span class="item-price">$95</span>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <span class="item-name">Hot Dog Supremo</span>
+                        <p class="item-desc">Salchicha con tocino, carne de la casa, verduras y chiles.</p>
+                    </div>
+                    <span class="item-price">$90</span>
+                </div>
+            </section>
+        </div>
+
+        <section class="menu-category">
+            <h2>📦 Paquetes Especiales</h2>
+            <div class="packages">
+                <div class="package-card">
+                    <h3>Paquete 1</h3>
+                    <p>Hamburguesa Villa + Papas Fritas + Refresco</p>
+                    <p class="item-price" style="text-align:center; margin-top:10px;">$155</p>
+                </div>
+                <div class="package-card">
+                    <h3>Paquete 2</h3>
+                    <p>1 Hot Dog Villa + Papas Fritas + Refresco</p>
+                    <p class="item-price" style="text-align:center; margin-top:10px;">$100</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="#">FACEBOOK</a>
+            <a href="#">INSTAGRAM</a>
+        </div>
+        <p>@hamburguesasvilla | Zihuatanejo, Guerrero</p>
+        <p style="font-size: 0.7rem; margin-top: 20px; color: #444;">Diseñado para Villa Hamburguesas</p>
+    </footer>
+
+</body>
+</html>

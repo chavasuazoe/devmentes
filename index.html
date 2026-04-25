@@ -3,271 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevMentes | Soluciones Digitales Inteligentes</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Villa Hamburguesas | Menú Interactivo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #007bff;
-            --dark-blue: #001f3f;
-            --black: #0a0a0a;
-            --white: #ffffff;
-            --gray: #f4f4f4;
-            --text-muted: #666;
+            --primary: #f8b400;
+            --secondary: #e63946;
+            --dark: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-light: #ffffff;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Lexend', sans-serif; background-color: var(--dark); color: var(--text-light); padding-bottom: 120px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--white);
-            color: var(--black);
-            line-height: 1.6;
-        }
+        header { text-align: center; padding: 40px 0; border-bottom: 3px solid var(--primary); margin-bottom: 30px; }
+        .logo { font-family: 'Bebas Neue', cursive; font-size: 3.5rem; color: var(--primary); line-height: 1; }
 
-        /* Navegación */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 10%;
-            background: var(--white);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
+        .section-title { font-family: 'Bebas Neue'; color: var(--primary); font-size: 2.2rem; margin: 30px 0 15px; border-left: 5px solid var(--secondary); padding-left: 15px; }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--black);
-            text-decoration: none;
-        }
+        /* Estilo de Card de Producto */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
+        .card { background: var(--card-bg); padding: 20px; border-radius: 15px; border: 1px solid #333; transition: 0.3s; }
+        .card:hover { border-color: var(--primary); }
+        .item-info { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .item-name { font-weight: 800; color: var(--primary); text-transform: uppercase; font-size: 0.95rem; }
+        .price { font-family: 'Bebas Neue'; font-size: 1.4rem; }
+        .desc { font-size: 0.8rem; color: #aaa; margin-bottom: 15px; min-height: 40px; }
 
-        .logo span {
-            color: var(--primary-blue);
-        }
+        /* Controles de Cantidad */
+        .controls { display: flex; align-items: center; gap: 15px; }
+        .btn-qty { background: #333; border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; font-weight: bold; }
+        .btn-qty:hover { background: var(--primary); color: var(--dark); }
+        .qty-val { font-weight: 800; font-size: 1.1rem; width: 20px; text-align: center; }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
+        /* Carrito Flotante */
+        .cart-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: #222; padding: 20px; border-top: 2px solid var(--primary); box-shadow: 0 -10px 30px rgba(0,0,0,0.5); z-index: 1000; }
+        .cart-content { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .total-box { font-size: 1.2rem; font-weight: 800; }
+        .btn-send { background: #25d366; color: white; border: none; padding: 12px 25px; border-radius: 50px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 10px; }
+        .btn-location { background: #3498db; color: white; border: none; padding: 12px; border-radius: 50px; cursor: pointer; font-size: 0.8rem; margin-right: 10px; }
 
-        nav ul li {
-            margin-left: 30px;
-        }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--black);
-            font-weight: 400;
-            transition: 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: var(--primary-blue);
-        }
-
-        /* Hero Section */
-        header {
-            height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at top right, #eef6ff, var(--white));
-            padding: 0 20px;
-        }
-
-        header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            max-width: 800px;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
-
-        .btn-primary {
-            background-color: var(--black);
-            color: var(--white);
-            padding: 15px 35px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 700;
-            transition: 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-blue);
-        }
-
-        /* Secciones Generales */
-        section {
-            padding: 100px 10%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        /* Servicios */
-        .grid-services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            padding: 40px;
-            background: var(--gray);
-            border-radius: 15px;
-            transition: 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            background: var(--white);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-        }
-
-        .service-card h3 {
-            margin-bottom: 15px;
-            color: var(--primary-blue);
-        }
-
-        /* Portafolio */
-        .grid-portfolio {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .portfolio-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            aspect-ratio: 16/9;
-            background: var(--dark-blue);
-        }
-
-        .portfolio-info {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            color: var(--white);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--black);
-            color: var(--white);
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .social-links a {
-            color: var(--white);
-            margin: 0 15px;
-            text-decoration: none;
-            opacity: 0.7;
-        }
-
-        .social-links a:hover {
-            opacity: 1;
-        }
-
-        @media (max-width: 768px) {
-            header h1 { font-size: 2.5rem; }
-            nav ul { display: none; }
-        }
+        .extra-badge { background: #332100; color: var(--primary); padding: 2px 8px; border-radius: 5px; font-size: 0.7rem; margin-top: 5px; display: inline-block; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <a href="#" class="logo">Dev<span>Mentes</span></a>
-        <ul>
-            <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#portafolio">Portafolio</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
-    </nav>
+<header>
+    <div class="logo">VILLA HAMBURGUESAS</div>
+    <p style="color: var(--secondary); font-weight: 800; letter-spacing: 2px;">MENÚ INTERACTIVO V1.0</p>
+</header>
 
-    <header>
-        <h1>Soluciones Digitales Inteligentes</h1>
-        <p>Transformamos ideas complejas en software funcional y de alto impacto. Especialistas en desarrollo web y gestión de software.</p>
-        <a href="#contacto" class="btn-primary">Hablemos de tu proyecto</a>
-    </header>
+<div class="container">
+    <h2 class="section-title">HAMBURGUESAS</h2>
+    <div class="grid" id="hamburguesas">
+        </div>
 
-    <section id="servicios">
-        <div class="section-title">
-            <h2>Nuestros Servicios</h2>
-            <p>Especialización técnica para el mundo real.</p>
-        </div>
-        <div class="grid-services">
-            <div class="service-card">
-                <h3>Desarrollo Web</h3>
-                <p>Landing pages, sitios corporativos y aplicaciones web dinámicas con las últimas tecnologías.</p>
-            </div>
-            <div class="service-card">
-                <h3>Gestión de Software</h3>
-                <p>Análisis, arquitectura y optimización de sistemas para garantizar escalabilidad.</p>
-            </div>
-            <div class="service-card">
-                <h3>Diseño UI/UX</h3>
-                <p>Interfaces intuitivas pensadas para ofrecer la mejor experiencia al usuario final.</p>
-            </div>
-        </div>
-    </section>
+    <h2 class="section-title">HOT DOGS</h2>
+    <div class="grid" id="hotdogs"></div>
 
-    <section id="portafolio" style="background-color: var(--gray);">
-        <div class="section-title">
-            <h2>Portafolio</h2>
-            <p>Casos de éxito y prototipos recientes.</p>
-        </div>
-        <div class="grid-portfolio">
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <h3>Hamburguesas Villa</h3>
-                    <p>Landing Page / Digitalización de Menú</p>
-                </div>
-            </div>
-            <div class="portfolio-item">
-                <div class="portfolio-info">
-                    <h3>Próximo Proyecto</h3>
-                    <p>En desarrollo...</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <h2 class="section-title">ACOMPAÑAMIENTOS</h2>
+    <div class="grid" id="complementos"></div>
 
-    <footer>
-        <div class="social-links">
-            <a href="#">LinkedIn</a>
-            <a href="#">GitHub</a>
-            <a href="#">Facebook</a>
-        </div>
-        <p style="margin-top: 20px;">&copy; 2026 DevMentes. Todos los derechos reservados.</p>
-        <p style="font-size: 0.8rem; color: #444; margin-top: 10px;">Zihuatanejo, Guerrero.</p>
-    </footer>
+    <h2 class="section-title">PAQUETES ESPECIALES</h2>
+    <div class="grid" id="paquetes"></div>
+</div>
 
+<div class="cart-bar">
+    <div class="cart-content">
+        <div class="total-box">
+            <span style="font-size: 0.8rem; color: #aaa; display: block;">Total estimado:</span>
+            <span id="total-price">$0.00</span>
+        </div>
+        <div style="display: flex; align-items: center;">
+            <button class="btn-location" onclick="getLocation()" id="loc-btn" title="Enviar Ubicación">
+                <i class="fas fa-map-marker-alt"></i> <span id="loc-status">Ubicación</span>
+            </button>
+            <button class="btn-send" onclick="sendWhatsApp()">
+                <i class="fab fa-whatsapp"></i> ENVIAR PEDIDO
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const menuData = {
+        hamburguesas: [
+            { id: 1, name: "Villa", price: 105, desc: "Jamón, quesos, cebolla caramelizada, chiles." },
+            { id: 2, name: "Especial", price: 135, desc: "Salchicha c/ tocino, quesos, cebolla caramelizada." },
+            { id: 3, name: "BBQ", price: 155, desc: "BBQ, aros de cebolla, tocino, quesos, vegetales." },
+            { id: 4, name: "Con Tocino", price: 140, desc: "Tocino extra, jamón, quesos y vegetales." },
+            { id: 5, name: "Doble", price: 160, desc: "Doble carne Villa, cebolla caramelizada y vegetales." },
+            { id: 6, name: "Hawaiana", price: 120, desc: "Piña, jamón, quesos y cebolla caramelizada." },
+            { id: 7, name: "Mexicana", price: 130, desc: "Guacamole, chorizo, queso Oaxaca y vegetales." },
+            { id: 8, name: "La McDonald", price: 95, desc: "Clásica: Jamón, queso amarillo, lechuga y papas." }
+        ],
+        hotdogs: [
+            { id: 9, name: "Villa HD", price: 55, desc: "Salchicha, tocino, verduras y chiles." },
+            { id: 10, name: "Especial HD", price: 70, desc: "Queso Oaxaca fundido, tocino y vegetales." },
+            { id: 11, name: "BBQ HD", price: 70, desc: "BBQ, piña, cebolla caramelizada y chiles." },
+            { id: 12, name: "Supremo HD", price: 90, desc: "Salchicha c/ tocino y carne de la casa picada." },
+            { id: 13, name: "Mexicano HD", price: 95, desc: "Guacamole, chorizo, Oaxaca y chile toreado." }
+        ],
+        complementos: [
+            { id: 14, name: "Papas Fritas", price: 60, desc: "Clásicas y crujientes." },
+            { id: 15, name: "Papas Gajo", price: 70, desc: "Sazonadas estilo rústico." },
+            { id: 16, name: "Aros de Cebolla", price: 80, desc: "Empanizados y dorados." },
+            { id: 17, name: "Nuggets Pollo", price: 70, desc: "6 piezas con salsa." }
+        ],
+        paquetes: [
+            { id: 18, name: "Paquete 1", price: 155, desc: "Hamb. Villa + Papas Fritas + Refresco." },
+            { id: 19, name: "Paquete 2", price: 100, desc: "1 Hot Dog Villa + Papas Fritas + Refresco." }
+        ]
+    };
+
+    let cart = {};
+    let userLocation = "";
+
+    function renderMenu() {
+        for (let cat in menuData) {
+            const container = document.getElementById(cat);
+            menuData[cat].forEach(item => {
+                container.innerHTML += `
+                    <div class="card">
+                        <div class="item-info">
+                            <span class="item-name">${item.name}</span>
+                            <span class="price">$${item.price}</span>
+                        </div>
+                        <p class="desc">${item.desc}</p>
+                        <div class="controls">
+                            <button class="btn-qty" onclick="updateQty(${item.id}, -1, '${item.name}', ${item.price})">-</button>
+                            <span class="qty-val" id="qty-${item.id}">0</span>
+                            <button class="btn-qty" onclick="updateQty(${item.id}, 1, '${item.name}', ${item.price})">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+    }
+
+    function updateQty(id, delta, name, price) {
+        if (!cart[id]) cart[id] = { name, price, qty: 0 };
+        cart[id].qty = Math.max(0, cart[id].qty + delta);
+        document.getElementById(`qty-${id}`).innerText = cart[id].qty;
+        if (cart[id].qty === 0) delete cart[id];
+        calculateTotal();
+    }
+
+    function calculateTotal() {
+        let total = 0;
+        for (let id in cart) total += cart[id].price * cart[id].qty;
+        document.getElementById('total-price').innerText = `$${total.toFixed(2)}`;
+    }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            document.getElementById('loc-status').innerText = "Obteniendo...";
+            navigator.geolocation.getCurrentPosition(position => {
+                userLocation = `https://www.google.com/maps?q=${position.coords.latitude},${position.coords.longitude}`;
+                document.getElementById('loc-status').innerText = "✓ Lista";
+                document.getElementById('loc-btn').style.background = "#2ecc71";
+            }, () => {
+                alert("No se pudo obtener la ubicación. Favor de mandarla manualmente.");
+                document.getElementById('loc-status').innerText = "Error";
+            });
+        }
+    }
+
+    function sendWhatsApp() {
+        let itemsCount = Object.keys(cart).length;
+        if (itemsCount === 0) return alert("¡Selecciona algo rico para comer primero!");
+
+        let total = 0;
+        let ticket = `*🍔 FACTURA DIGITAL - VILLA HAMBURGUESAS*\n`;
+        ticket += `------------------------------------------\n`;
+        
+        for (let id in cart) {
+            let subtotal = cart[id].price * cart[id].qty;
+            ticket += `*${cart[id].qty}x* ${cart[id].name} .... $${subtotal}\n`;
+            total += subtotal;
+        }
+
+        ticket += `------------------------------------------\n`;
+        ticket += `*TOTAL A PAGAR: $${total.toFixed(2)}*\n\n`;
+        
+        if(userLocation) {
+            ticket += `📍 *ENTREGAR EN:* ${userLocation}\n`;
+        } else {
+            ticket += `🏠 *Entrega:* Pediré la ubicación o pasaré al local.\n`;
+        }
+        
+        ticket += `\n_Pedido generado desde el sitio web oficial._`;
+
+        const encodedMsg = encodeURIComponent(ticket);
+        const phone = "527551298899"; // AQUÍ VA EL TELÉFONO DEL CLIENTE
+        window.open(`https://wa.me/${phone}?text=${encodedMsg}`, '_blank');
+    }
+
+    renderMenu();
+</script>
 </body>
 </html>
